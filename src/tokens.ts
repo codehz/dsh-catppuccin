@@ -83,7 +83,7 @@ export function tokensFromPalette(palette: CatppuccinPalette): ThemeTokens {
     '--dsw-specific-sidebar-fill': palette.mantle,
     '--dsw-specific-sidebar-nav-item-active': palette.surface1,
     '--dsw-specific-sidebar-nav-item-hover': palette.surface0,
-    '--dsw-specific-sidebar-nav-item-active-accent': palette.mauve,
+    '--dsw-specific-sidebar-nav-item-active-accent': palette.surface1,
   }
 }
 

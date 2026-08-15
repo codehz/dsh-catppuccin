@@ -20,7 +20,7 @@ describe('Catppuccin token mapping', () => {
     expect(MOCHA_TOKENS['--dsw-alias-bg-layer-2']).toBe(mocha.surface0)
     expect(MOCHA_TOKENS['--dsw-specific-bubble']).toBe(mocha.surface0)
     expect(MOCHA_TOKENS['--dsw-specific-input-major']).toBe(mocha.surface0)
-    expect(MOCHA_TOKENS['--dsw-specific-sidebar-nav-item-active-accent']).toBe(mocha.mauve)
+    expect(MOCHA_TOKENS['--dsw-specific-sidebar-nav-item-active-accent']).toBe(mocha.surface1)
   })
 
   test('Latte is the light counterpart with the same token keys', () => {
