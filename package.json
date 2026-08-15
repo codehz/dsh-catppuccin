@@ -1,0 +1,57 @@
+{
+  "name": "dsh-catppuccin",
+  "version": "0.1.0",
+  "description": "DSH Catppuccin theme plugin: Mocha for dark, Latte for light, Mauve accent",
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": { "types": "./lib/types/index.d.ts", "default": "./lib/index.js" },
+    "./client": { "types": "./lib/types/client/index.d.ts", "default": "./lib/client.js" },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/palette.js",
+    "lib/tokens.js",
+    "lib/client.js",
+    "lib/client.js.map",
+    "lib/types/**/*.d.ts",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-theme"
+      ],
+      "platform": "web",
+      "immediately": true
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json && tsdown",
+    "bundle": "tsdown",
+    "watch": "tsdown --watch",
+    "check": "tsc -p tsconfig.json --noEmit",
+    "test": "bun test",
+    "check:bundle": "bun scripts/check-client-bundle.ts",
+    "verify": "pnpm check && pnpm test && pnpm build && pnpm check:bundle"
+  },
+  "engines": { "node": ">=22.19.0" },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-client-ui-theme": "0.1.0-rc.6"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/dsh-client-ui-theme": { "optional": true }
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/node": "^22.0.0",
+    "tsdown": "^0.22.2",
+    "typescript": "^5.9.0"
+  },
+  "license": "MIT"
+}

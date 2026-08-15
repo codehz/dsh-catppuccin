@@ -1,0 +1,10 @@
+# dsh-catppuccin bundle patch
+#
+# Installed with:
+#   dsh plugin --profile web add /path/to/dsh-catppuccin
+#
+# The host row is a scan anchor: client-modules picks up dsh.client from this
+# package and serves the browser half. Theme registration happens in the client.
+- insert:
+    - id: catppuccin
+      name: 'dsh-catppuccin'
