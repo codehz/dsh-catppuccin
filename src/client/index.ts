@@ -38,7 +38,7 @@ interface ThemeService {
 
 interface ThemeBrowserContext {
   theme: ThemeService
-  effect(disposer: () => void, label?: string): void
+  effect(setup: () => void | (() => void), label?: string): void
 }
 
 /**
@@ -48,20 +48,23 @@ interface ThemeBrowserContext {
  * @param ctx - browser context with the theme service.
  */
 export function apply(ctx: ThemeBrowserContext): void {
-  const disposeMocha = ctx.theme.register({
-    id: MOCHA_THEME_ID,
-    colorScheme: 'dark',
-    tokens: MOCHA_TOKENS,
-  })
-  const disposeLatte = ctx.theme.register({
-    id: LATTE_THEME_ID,
-    colorScheme: 'light',
-    tokens: LATTE_TOKENS,
-  })
-  const disposeOverride = ctx.theme.overrideTokens(OVERRIDE_SOURCE, TOKEN_OVERRIDES)
   ctx.effect(() => {
-    disposeOverride()
-    disposeLatte()
-    disposeMocha()
+    const disposeMocha = ctx.theme.register({
+      id: MOCHA_THEME_ID,
+      colorScheme: 'dark',
+      tokens: MOCHA_TOKENS,
+    })
+    const disposeLatte = ctx.theme.register({
+      id: LATTE_THEME_ID,
+      colorScheme: 'light',
+      tokens: LATTE_TOKENS,
+    })
+    const disposeOverride = ctx.theme.overrideTokens(OVERRIDE_SOURCE, TOKEN_OVERRIDES)
+
+    return () => {
+      disposeOverride()
+      disposeLatte()
+      disposeMocha()
+    }
   }, 'dsh-catppuccin-theme')
 }
